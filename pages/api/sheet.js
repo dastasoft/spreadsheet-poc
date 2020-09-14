@@ -8,22 +8,27 @@ const googleSpreadSheet = async () => {
   );
   console.log('GOOGLE_PRIVATE_KEY', process.env.GOOGLE_PRIVATE_KEY);
 
-  const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID);
+  // const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID);
 
-  await doc.useServiceAccountAuth({
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY
-  });
+  // await doc.useServiceAccountAuth({
+  //   client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+  //   private_key: process.env.GOOGLE_PRIVATE_KEY
+  // });
 
-  await doc.loadInfo();
+  // await doc.loadInfo();
 
-  const sheet = doc.sheetsByIndex[0];
+  // const sheet = doc.sheetsByIndex[0];
 
-  const rows = await sheet.getRows();
+  // const rows = await sheet.getRows();
+
+  // return {
+  //   headers: rows[0]._sheet.headerValues,
+  //   data: rows.map(row => row._rawData)
+  // };
 
   return {
-    headers: rows[0]._sheet.headerValues,
-    data: rows.map(row => row._rawData)
+    headers: ['Test'],
+    data: []
   };
 };
 
