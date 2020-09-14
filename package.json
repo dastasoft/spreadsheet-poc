@@ -1,0 +1,52 @@
+{
+  "name": "nextjs-boilerplate",
+  "version": "1.0.0",
+  "description": "A NextJS boilerplate with tailwindcss, eslint and prettier",
+  "main": "index.js",
+  "scripts": {
+    "build": "next build",
+    "deploy": "next build && next export",
+    "dev": "next",
+    "lint": "eslint . --fix",
+    "start": "next start"
+  },
+  "keywords": [
+    "nextjs",
+    "tailwindcss",
+    "eslint",
+    "prettier",
+    "boilerplate",
+    "svg"
+  ],
+  "author": "dastasoft",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^9.5.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "babel-plugin-inline-react-svg": "^1.1.1",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.0",
+    "husky": ">=4",
+    "lint-staged": ">=10",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.0.5",
+    "tailwindcss": "^1.7.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
+  }
+}
