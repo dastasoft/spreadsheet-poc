@@ -19,13 +19,13 @@ export default function Home({ data }) {
   );
 }
 
-export async function getStaticProps() {
-  const res = await fetch('https://spreadsheet-poc.vercel.app/api/sheet');
-  const data = await res.json();
+// export async function getStaticProps() {
+//   const res = await fetch('https://spreadsheet-poc.vercel.app/api/sheet');
+//   const data = await res.json();
 
-  return {
-    props: {
-      data
-    }
-  };
-}
+//   return {
+//     props: {
+//       data
+//     }
+//   };
+// }
