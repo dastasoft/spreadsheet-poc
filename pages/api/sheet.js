@@ -1,6 +1,13 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 
 const googleSpreadSheet = async () => {
+  console.log('GOOGLE_SPREADSHEET_ID', process.env.GOOGLE_SPREADSHEET_ID);
+  console.log(
+    'GOOGLE_SERVICE_ACCOUNT_EMAIL',
+    process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
+  );
+  console.log('GOOGLE_PRIVATE_KEY', process.env.GOOGLE_PRIVATE_KEY);
+
   const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID);
 
   await doc.useServiceAccountAuth({
