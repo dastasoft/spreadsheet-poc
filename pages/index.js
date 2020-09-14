@@ -1,7 +1,7 @@
-export default function Home() {
+export default function Home({ data }) {
   return (
     <div className="p-4 mx-auto flex items-center">
-      {/* <div
+      <div
         className={`grid grid-cols-${data.headers.length} gap-1 border-blue-800 border`}
       >
         {data.headers.map(header => (
@@ -14,19 +14,18 @@ export default function Home() {
             <span className="p-2 border-blue-800 border">{cell}</span>
           ))
         )}
-      </div> */}
+      </div>
     </div>
   );
 }
 
-// export async function getStaticProps() {
-//   const res = await fetch('https://spreadsheet-poc.vercel.app/api/sheet');
-//   console.log(res);
-//   const data = await res.json();
+export async function getStaticProps() {
+  const res = await fetch('https://spreadsheet-poc.vercel.app/api/sheet');
+  const data = await res.json();
 
-//   return {
-//     props: {
-//       data
-//     }
-//   };
-// }
+  return {
+    props: {
+      data
+    }
+  };
+}
