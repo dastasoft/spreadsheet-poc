@@ -21,6 +21,8 @@
   "author": "dastasoft",
   "license": "ISC",
   "dependencies": {
+    "google-spreadsheet": "^3.0.13",
+    "googleapis": "39",
     "next": "^9.5.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
