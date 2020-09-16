@@ -1,47 +1,76 @@
+import Menu from '../components/Menu';
+
 const Spec = ({ label, value }) => (
   <div className="p-4 flex flex-col items-center">
-    <span className="font-bold text-2xl text-blue-900">{value}</span>
-    <span className="text-gray-600 text-sm">{label}</span>
+    <span className="font-bold text-2xl text-blue-800">{value}</span>
+    <span className="text-sm">{label}</span>
   </div>
 );
 
 export default function Home({ data }) {
   return (
-    <div className="bg-blue-900">
-      {data.data.map(row => {
+    <main className="bg-blue-900">
+      <Menu
+        items={data.data.map(row => ({
+          label: row['Model Name'],
+          value: row['Model ID']
+        }))}
+      />
+      {data.data.map((row, index) => {
         return (
-          <div className="grid grid-cols-3 gap-2 items-center border border-gray-300 p-4 m-4 bg-white rounded-lg">
+          <section
+            id={row['Model ID']}
+            className="grid grid-cols-3 gap-2 items-center p-4 h-screen"
+            style={{
+              backgroundImage: `url("images/background${
+                index % 2 === 0 ? '1' : '2'
+              }.jpg")`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          >
             <div className="flex flex-col items-center row-span-2 col-span-2">
               <img src={row.Image} alt={`${row['Model Name']} Thumbnail}`} />
+            </div>
+            <div
+              className="self-end bg-white p-5 m-2 bg-opacity-75"
+              style={{ backdropFilter: 'blur(8px)' }}
+            >
+              <h2 className="font-bold text-4xl text-blue-800">
+                {row['Model Name']}
+              </h2>
+              <p>{row.Description}</p>
+            </div>
+            <div className="self-start flex flex-col items-center">
+              <div
+                className="grid grid-cols-3 gap-2 items-center bg-white bg-opacity-75 m-2"
+                style={{ backdropFilter: 'blur(8px)' }}
+              >
+                <Spec label="Range" value={row.Range} />
+                <Spec label="Top Speed" value={row['Top Speed']} />
+                <Spec label="Acceleration" value={row.Acceleration} />
+              </div>
               <button
-                className="border-4 border-blue-800 px-4 py-2 rounded-full font-bold cursor-not-allowed"
+                className="mt-6 border-4 border-blue-800 px-4 py-2 rounded-full font-bold cursor-not-allowed bg-white"
                 type="button"
                 disabled
               >
                 Order Now
               </button>
             </div>
-            <div>
-              <h2 className="font-bold text-4xl text-blue-900">
-                {row['Model Name']}
-              </h2>
-              <p>{row.Description}</p>
-            </div>
-            <div className="grid grid-cols-3 gap-2 items-center">
-              <Spec label="Range" value={row.Range} />
-              <Spec label="Top Speed" value={row['Top Speed']} />
-              <Spec label="Acceleration" value={row.Acceleration} />
-            </div>
-          </div>
+          </section>
         );
       })}
-    </div>
+    </main>
   );
 }
 
 export async function getStaticProps() {
-  // const res = await fetch('http://localhost:3000/api/sheet');
-  const res = await fetch('https://spreadsheet-poc.vercel.app/api/sheet');
+  const res = await fetch(
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000/api/sheet'
+      : 'https://spreadsheet-poc.vercel.app/api/sheet'
+  );
   const data = await res.json();
 
   return {
