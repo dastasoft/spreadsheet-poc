@@ -20,7 +20,7 @@ export default function Home({ data }) {
         return (
           <section
             id={row['Model ID']}
-            className="grid grid-cols-3 gap-2 items-center p-4 h-screen"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 items-center p-4 h-screen"
             style={{
               backgroundImage: `url("images/background${
                 index % 2 === 0 ? '1' : '2'
@@ -29,19 +29,19 @@ export default function Home({ data }) {
               backgroundPosition: 'center'
             }}
           >
-            <div className="flex flex-col items-center row-span-2 col-span-2">
+            <div className="flex flex-col items-center md:row-span-2 md:col-span-2">
               <img src={row.Image} alt={`${row['Model Name']} Thumbnail}`} />
             </div>
             <div
-              className="self-end bg-white p-5 m-2 bg-opacity-75"
+              className="lg:self-end bg-white p-5 m-2 bg-opacity-75"
               style={{ backdropFilter: 'blur(8px)' }}
             >
               <h2 className="font-bold text-4xl text-blue-800">
                 {row['Model Name']}
               </h2>
-              <p>{row.Description}</p>
+              <p style={{ fontSize: '2vmin' }}>{row.Description}</p>
             </div>
-            <div className="self-start flex flex-col items-center">
+            <div className="lg:self-start flex flex-col items-center">
               <div
                 className="grid grid-cols-3 gap-2 items-center bg-white bg-opacity-75 m-2"
                 style={{ backdropFilter: 'blur(8px)' }}
