@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 
 const googleSpreadSheet = async () => {
@@ -16,7 +17,13 @@ const googleSpreadSheet = async () => {
 
   return {
     headers: rows[0]._sheet.headerValues,
-    data: rows.map(row => row._rawData)
+    data: rows.map(row => {
+      return row._rawData.reduce((accumulator, cell, index) => {
+        const register = { ...accumulator };
+        register[row._sheet.headerValues[index]] = cell;
+        return register;
+      }, {});
+    })
   };
 };
 
